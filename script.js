@@ -77,23 +77,78 @@ function contains(obj, value) {
       return contains(obj[key], value);
     }
 
-    console.log(obj[key]);
     if (obj[key] === value) {
       return true;
     }
-
-    return false;
   }
+  return false;
 }
 
 let hasIt = contains(nestedObject, 44); // true
 let doesntHaveIt = contains(nestedObject, "foo2"); // false
-console.log(hasIt, doesntHaveIt);
+// console.log(hasIt, doesntHaveIt);
+
+// Question 7: Parse a multi-dimensional array
+
+function totalIntegers(arr) {
+  if (arr.length === 0) return 0;
+
+  let total = 0;
+  let index = arr.shift();
+  if (Array.isArray(index)) {
+    total += totalIntegers(index);
+  }
+
+  if (Number.isInteger(index)) {
+    total += 1;
+  }
+
+  return total + totalIntegers(arr);
+}
+
+var seven = totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, 5, [5, 6]]]); // 7
+// console.log(seven);
+
+// Question 8: Write a function that sums squares of numbers in list that may contain more lists
+
+function sumSquares(arr) {
+  let total = 0;
+  if (arr.length === 0) return total;
+
+  let index = arr.shift();
+
+  if (Array.isArray(index)) {
+    total += sumSquares(index);
+  }
+
+  if (Number.isInteger(index)) {
+    total += index * index;
+    total += sumSquares(arr);
+  }
+
+  return total + sumSquares(arr);
+}
+
+// newArr is being re-initiated to empty array. need to save newArr
+
+let l = [1, 2, 3];
+// console.log(sumSquares(l)); // 1 + 4 + 9 = 14
+
+l = [[1, 2], 3];
+// console.log(sumSquares(l)); // 1 + 4 + 9 = 14
+
+l = [[[[[[[[[1]]]]]]]]];
+// console.log(sumSquares(l)); // 1 = 1
+
+l = [10, [[10], 10], [10]];
+// console.log(sumSquares(l)); // 100 + 100 + 100 + 100 = 400
 
 /*
 
-- return will bubble up the result
+- the data structure will give you options on your logic
+- the parameter defines what your recursive base logic will revolve around
+- when working with recursive structures, figure out how to traverse it first
+- return will bubble up the result to the caller, which may be a nested function caller
 - base is how the recursion will end
-- the parameter defines what your recursive base will revolve around
 
 */
