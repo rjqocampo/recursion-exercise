@@ -180,14 +180,30 @@ function fibs(n) {
   return arr;
 }
 
-console.log(fibs(8));
+// console.log(fibs(8)) // [0, 1, 1, 2, 3, 5, 8, 13]
+
+function fibsRec(n, arr) {
+  let array = arr || [0];
+
+  if (n === 0) return [];
+  if (n <= 1) return array;
+
+  let a = array[array.length - 2] || 0;
+  let b = array[array.length - 1] || 1;
+
+  array.push(a + b);
+
+  return fibsRec(n - 1, array);
+}
+
+console.log(fibsRec(10));
 
 /*
 
 - the data structure will give you options on your logic
 - the parameter defines what your recursive base logic will revolve around
 - when working with recursive structures, figure out how to traverse it first
-- return will bubble up the result to the caller, which may be a nested function caller
+- return will bubble up the result to the caller, which may be a nested function caller with its own context
 - base is how the recursion will end
 
 */
