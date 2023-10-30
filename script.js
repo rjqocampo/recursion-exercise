@@ -129,8 +129,6 @@ function sumSquares(arr) {
   return total + sumSquares(arr);
 }
 
-// newArr is being re-initiated to empty array. need to save newArr
-
 let l = [1, 2, 3];
 // console.log(sumSquares(l)); // 1 + 4 + 9 = 14
 
@@ -142,6 +140,47 @@ l = [[[[[[[[[1]]]]]]]]];
 
 l = [10, [[10], 10], [10]];
 // console.log(sumSquares(l)); // 100 + 100 + 100 + 100 = 400
+
+// Question 9:
+// The function should return an array containing repetitions of the number argument. For instance, replicate(3, 5) should return [5,5,5]. If the times argument is negative, return an empty array.
+function replicate(a, b) {
+  let arr = [];
+
+  function recursive(a, b) {
+    if (a === 0) return;
+    else if (a < 0) return (arr = []);
+    else {
+      arr[a - 1] = b;
+      return recursive(a - 1, b);
+    }
+  }
+
+  recursive(a, b);
+
+  return arr;
+}
+// i can use array index to add an item to the array
+
+// console.log(replicate(3, 5)); // [5, 5, 5]
+// console.log(replicate(1, 69)); // [69]
+// console.log(replicate(-2, 6)); // []
+
+function fibs(n) {
+  const arr = [0];
+
+  if (n === 0) return [];
+
+  for (let i = 1; i < n; i++) {
+    let a = arr[arr.length - 2] || 0;
+    let b = arr[arr.length - 1] || 1;
+    console.log(a, b);
+    arr.push(a + b);
+  }
+
+  return arr;
+}
+
+console.log(fibs(8));
 
 /*
 
