@@ -1,3 +1,5 @@
+// QUIZ SOLUTIONS: https://www.codingame.com/playgrounds/5422/js-interview-prep-recursion
+
 // Question 1: Sum all numbers
 function sumRange(n) {
   if (n === 1) return 1;
